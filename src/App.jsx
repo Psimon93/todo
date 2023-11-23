@@ -1,18 +1,21 @@
 import "./App.css";
 import { useState } from "react";
+import Form from "./Components/Form";
+import RenderAll from "./Components/RenderAll";
+import RenderActive from "./Components/RenderActive";
+import RenderCompleted from "./Components/RenderCompleted";
 
 function App() {
   const [taskList, setTaskList] = useState([]);
-  const [newTask, setNewTask] = useState("");
+  const [button, setButton] = useState("All");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function submitTask(value) {
     setTaskList((c) => [
       ...c,
-      { id: crypto.randomUUID(), title: newTask, completed: false },
+      { id: crypto.randomUUID(), title: value, completed: false },
     ]);
-    setNewTask("");
   }
+
   function toggleBox(id, checked) {
     setTaskList((c) => {
       return c.map((i) => {
@@ -33,33 +36,32 @@ function App() {
   return (
     <>
       <h1>Todo List</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="newTask">New task</label>
-        <input
-          type="text"
-          id="newTask"
-          value={newTask}
-          onChange={(e) => setNewTask(e.target.value)}
-        />
-        <button>Add</button>
-      </form>
+      <button onClick={() => setButton("All")}>All</button>
+      <button onClick={() => setButton("Active")}>Active</button>
+      <button onClick={() => setButton("Completed")}>Completed</button>
+      <Form submitTask={submitTask} />
       {taskList.length == 0 && <h2>No tasks !</h2>}
-      {/* ////// */}
-      <ul>
-        {taskList.map((i) => (
-          <li key={i.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={i.completed}
-                onChange={(e) => toggleBox(i.id, e.target.checked)}
-              />
-              {i.title}
-            </label>
-            <button onClick={() => deleteTask(i.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      {button === "All" && (
+        <RenderAll
+          taskList={taskList}
+          toggleBox={toggleBox}
+          deleteTask={deleteTask}
+        />
+      )}
+      {button === "Active" && (
+        <RenderActive
+          taskList={taskList}
+          toggleBox={toggleBox}
+          deleteTask={deleteTask}
+        />
+      )}
+      {button === "Completed" && (
+        <RenderCompleted
+          taskList={taskList}
+          toggleBox={toggleBox}
+          deleteTask={deleteTask}
+        />
+      )}
     </>
   );
 }
