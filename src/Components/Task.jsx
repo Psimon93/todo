@@ -1,4 +1,20 @@
-export default function Task({ id, completed, title, toggleBox, deleteTask }) {
+export default function Task({ id, completed, title, setTaskList }) {
+  function toggleBox(id, checked) {
+    setTaskList((c) => {
+      return c.map((i) => {
+        if (i.id == id) {
+          return { ...i, completed: checked };
+        }
+        return i;
+      });
+    });
+  }
+  function deleteTask(id) {
+    setTaskList((c) => {
+      return c.filter((i) => i.id !== id);
+    });
+  }
+
   return (
     <li style={{ listStyleType: "none" }}>
       <label style={completed ? { textDecoration: "line-Through" } : {}}>

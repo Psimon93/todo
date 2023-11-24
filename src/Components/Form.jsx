@@ -1,11 +1,14 @@
 import { useState } from "react";
-export default function Form({ submitTask }) {
+export default function Form({ setTaskList }) {
   const [newTask, setNewTask] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
     if (newTask.length === 0) return;
-    submitTask(newTask);
+    setTaskList((c) => [
+      ...c,
+      { id: crypto.randomUUID(), title: newTask, completed: false },
+    ]);
     setNewTask("");
   }
   return (
