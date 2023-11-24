@@ -23,7 +23,7 @@ export default function Task({ id, completed, title, setTaskList }) {
           checked={completed}
           onChange={(e) => toggleBox(id, e.target.checked)}
         />
-        {title}
+        {"  " + title}
       </label>
       <button onClick={() => deleteTask(id)}> 🔥 </button>
     </li>
