@@ -4,20 +4,20 @@ import RenderActive from "./RenderActive";
 import RenderCompleted from "./RenderCompleted";
 
 export default function RenderLogic({ setTaskList, taskList }) {
-  const [buttonX, setButtonX] = useState("All");
+  const [button, setButton] = useState("All");
   return (
     <div>
-      <button onClick={() => setButtonX("All")}>All</button>
-      <button onClick={() => setButtonX("Active")}>Active</button>
-      <button onClick={() => setButtonX("Completed")}>Completed</button>
+      <button onClick={() => setButton("All")}>All</button>
+      <button onClick={() => setButton("Active")}>Active</button>
+      <button onClick={() => setButton("Completed")}>Completed</button>
 
-      {buttonX === "All" && (
+      {button === "All" && (
         <RenderAll taskList={taskList} setTaskList={setTaskList} />
       )}
-      {buttonX === "Active" && (
+      {button === "Active" && (
         <RenderActive taskList={taskList} setTaskList={setTaskList} />
       )}
-      {buttonX === "Completed" && (
+      {button === "Completed" && (
         <RenderCompleted taskList={taskList} setTaskList={setTaskList} />
       )}
     </div>

@@ -1,9 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import Form from "./Components/Form";
-import RenderAll from "./Components/RenderAll";
-import RenderActive from "./Components/RenderActive";
-import RenderCompleted from "./Components/RenderCompleted";
 import DeleteAllButton from "./Components/DeleteAllButton";
 import RenderLogic from "./Components/RenderLogic";
 
