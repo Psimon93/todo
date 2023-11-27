@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export default function Task({ id, completed, title, setTaskList }) {
   function toggleBox(id, checked) {
     setTaskList((c) => {
@@ -29,3 +31,9 @@ export default function Task({ id, completed, title, setTaskList }) {
     </li>
   );
 }
+
+Task.propTypes = {
+  id: PropTypes.string,
+  completed: PropTypes.bool,
+  title: PropTypes.string,
+};

@@ -1,25 +1,41 @@
-import { useState } from "react";
 import RenderAll from "./RenderAll";
 import RenderActive from "./RenderActive";
 import RenderCompleted from "./RenderCompleted";
+import { Route, Routes, Link } from "react-router-dom";
 
 export default function RenderLogic({ setTaskList, taskList }) {
-  const [button, setButton] = useState("All");
   return (
-    <div>
-      <button onClick={() => setButton("All")}>All</button>
-      <button onClick={() => setButton("Active")}>Active</button>
-      <button onClick={() => setButton("Completed")}>Completed</button>
+    <>
+      <Link to="/">
+        <button>All</button>
+      </Link>
 
-      {button === "All" && (
-        <RenderAll taskList={taskList} setTaskList={setTaskList} />
-      )}
-      {button === "Active" && (
-        <RenderActive taskList={taskList} setTaskList={setTaskList} />
-      )}
-      {button === "Completed" && (
-        <RenderCompleted taskList={taskList} setTaskList={setTaskList} />
-      )}
-    </div>
+      <Link to="/Active">
+        <button>Active</button>
+      </Link>
+
+      <Link to="/Completed">
+        <button>Completed</button>
+      </Link>
+
+      <Routes>
+        <Route
+          path="/"
+          element={<RenderAll taskList={taskList} setTaskList={setTaskList} />}
+        />
+        <Route
+          path="/Active"
+          element={
+            <RenderActive taskList={taskList} setTaskList={setTaskList} />
+          }
+        />
+        <Route
+          path="/Completed"
+          element={
+            <RenderCompleted taskList={taskList} setTaskList={setTaskList} />
+          }
+        />
+      </Routes>
+    </>
   );
 }
