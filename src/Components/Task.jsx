@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { ListContext } from "../App";
 
-export default function Task({ id, completed, title, setTaskList }) {
+export default function Task({ id, completed, title }) {
+  const { setTaskList } = useContext(ListContext);
+
   function toggleBox(id, checked) {
     setTaskList((c) => {
       return c.map((i) => {

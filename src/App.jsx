@@ -1,9 +1,11 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import { TitleClass } from "./Components/TitleClass";
 import Form from "./Components/Form";
 import DeleteAllButton from "./Components/DeleteAllButton";
 import RenderLogic from "./Components/RenderLogic";
+
+export const ListContext = createContext();
 
 function App() {
   const [taskList, setTaskList] = useState(() => {
@@ -17,13 +19,13 @@ function App() {
   }, [taskList]);
 
   return (
-    <>
+    <ListContext.Provider value={{ taskList, setTaskList }}>
       <TitleClass title="Task List" />
-      <Form setTaskList={setTaskList} />
-      <RenderLogic taskList={taskList} setTaskList={setTaskList} />
+      <Form />
+      <RenderLogic />
       {taskList.length == 0 && <h2>No tasks !</h2>}
-      <DeleteAllButton setTaskList={setTaskList} />
-    </>
+      <DeleteAllButton />
+    </ListContext.Provider>
   );
 }
 

@@ -11,4 +11,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </BrowserRouter>
   </React.StrictMode>
 );
-//    context, routing, bootstrap
+//   bootstrap

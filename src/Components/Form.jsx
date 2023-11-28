@@ -1,5 +1,9 @@
-import { useState } from "react";
-export default function Form({ setTaskList }) {
+import { useContext, useState } from "react";
+import { ListContext } from "../App";
+
+export default function Form() {
+  const { setTaskList } = useContext(ListContext);
+
   const [newTask, setNewTask] = useState("");
 
   function handleSubmit(e) {
