@@ -1,9 +1,10 @@
 import "./App.css";
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { TitleClass } from "./Components/TitleClass";
 import Form from "./Components/Form";
 import DeleteAllButton from "./Components/DeleteAllButton";
 import RenderLogic from "./Components/RenderLogic";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export const ListContext = createContext();
 
